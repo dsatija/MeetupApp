@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <title>Insta Events</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style> 
+.flexbox-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 500px;
+    height: 500px;
+    background-color: green;
+   ;
+}
+
+.flex-item {
+    background-color: yellow;
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">Home</a>
+              <a class="navbar-brand" href="#/addEvent">Create Event</a>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
+  <div class="conainer" style="margin:20px;">
+    <div class="page-header">
+        <h1 style="color: blue ;text-align:center";><b>Welcome to InstaEvents!! </b></h1>
+    </div>
+ 
+   
+    <div class="list-group" ng-repeat="event in events">
+    <div class = "row"><div class = "col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <a class="list-group-item active" style="background-color:#B73333">
+            <h4 class="list-group-item-heading"><b>Event Name:&nbsp;</b>{{event.title}}</h4>
+            <p class="list-group-item-text"><b>Location:&nbsp;</b>{{event.location}}</p>
+            <p class="list-group-item-text"><b>Event Type:&nbsp;</b>{{event.type}}</p>
+            <p class="list-group-item-text"><b>Start Date:&nbsp;</b>{{event.startdate}}</p>
+            <p class="list-group-item-text"><b>End Date:&nbsp;</b>{{event.enddate}}</p>
+            <p class="list-group-item-text"><b>Description:&nbsp;</b>{{event.description}}</p>
+            <p class="list-group-item-text"><b>Organiser:&nbsp;</b>{{event.organiser}}</p>
+            <p class="list-group-item-text"><b>Guests:&nbsp;</b>{{event.guests}}</p>
+        </a>
+        </div></div></div>
+   
+  </div>
+  <footer class="footer">
+    <div class="container">
+        <p class="text-muted"></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CreateEvent</title>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <!--<script type="text/javascript" src="login_validation.js"></script>-->
+</head>
+
+<body ng-controller="AddEventCtrl" style="background-image:url(http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-4.jpg)">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color:red" class="text-center">Create Event</h1>
+            </div>
+            <div class="modal-body">
+                <form id="eventform" class="col-md-14 center-block" ng-submit="AddEvent()" name="eventform">
+                    <div class="form-group" ng-class="{ 'has-error' : eventform.title.$invalid }">
+                        <label for="name">Event Title</label>
+                        <input ng-model="events.title" type="text" class="form-control input-sm" name="title" placeholder="Give it a short distinct name" ng-minlength="4" autofocus>
+                        <p class="help-block" ng-show="eventform.title.$error.minlength">minimum 4 characters.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Event Location</label>
+                        <input ng-model="events.location" g-places-autocomplete type="text" class="form-control input-sm" name="location" placeholder="Specify where it's held">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Event Type</label>
+                        <select class="form-control input-sm" id="sel1" ng-model="events.type">
+                            <option>Select the type of event</option>
+                            <option>Festival</option>
+                            <option>Concert or performance</option>
+                            <option>Conference</option>
+                            <option>Dinner</option>
+                            <option>Game or competition</option>
+                            <option>Meeting</option>
+                            <option>Other</option>
+                            <option>Party or social gathering</option>
+                            <option>Seminar</option>
+                            <option>Training or workshop</option>
+                            <option>Trip</option>
+                            <option>Wedding</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Starts at</label>
+                        <div class='input-group date' id='datetimepicker6'>
+                            <input type="text" id="dt1" class="form-control input-sm" 
+                            datetimepicker datetimepicker-options="{{dateOptions}}" ng-model="events.startdate" placeholder="..." name="time" ng-blur="open2();" />
+                            <!--ng-click="initSlider();" />-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Ends at</label>
+                        <div class='input-group date' id='datetimepicker7'>
+                            <input type="text" id="dt2" class="form-control input-sm" datetimepicker datetimepicker-options="{{dateOptions2}}" ng-model="events.enddate" placeholder="..." name="time2"  />
+                            <!--ng-click="initSlider();"/>-->
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : eventform.desc.$invalid }">
+                        <label for="Description">Event Description</label>
+                        <textarea class="form-control" rows="4" placeholder="Write Event Description" ng-model="events.desc" ng-minlength="3" name="desc"></textarea>
+                        <p class="help-block" ng-show="eventform.desc.$error.minlength"> minimum 3 characters.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : eventform.organizer.$invalid }">
+                        <label for="organizer">Organizer Name</label>
+                        <input ng-model="events.organizer" type="text" class="form-control input-sm" name="organizer" placeholder="Who's organizing this event?" ng-minlength="3">
+                        <p class="help-block" ng-show="eventform.organizer.$error.minlength">minimum  3 characters.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : eventform.guests.$invalid }">
+                        <label for="Guest">Guests</label>
+                        <textarea class="form-control" rows="3" placeholder="Who are the guests for this event?" ng-model="events.guests" name="guests" ng-minlength="3"></textarea>
+                         <p class="help-block" ng-show="eventform.guests.$error.minlength">minimum 3 characters.</p>
+                        <h4 style="color:green" class="text-center">Great Job!!&nbsp;You are done.</h4>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <div class="col-md-16">
+                        <div class="form-group">
+                            <input type="submit" ng-click="AddEvent();" id="submit-button" class="btn btn-block btn-lg btn-success" ng-disabled="!events.title || !events.location||!events.type || !events.type || !events.startdate || !events.enddate || !events.desc || !events.organizer || !events.guests" value="MAKE EVENT LIVE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

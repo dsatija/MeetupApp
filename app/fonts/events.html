@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CreateEvent</title>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="login_validation.js"></script>
+    
+</head>
+
+<body ng-controller="AddEventCtrl" style="background-image:url(http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-4.jpg)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color:red" class="text-center">Create Event</h1>
+            </div>
+            <div class="modal-body">
+                <form id="eventform" class="col-md-14 center-block">
+                    <div class="form-group">
+                        <label for="name">Event Title</label>
+                        <input ng-model="user.title" type="text" class="form-control input-sm" name="title" placeholder="Give it a short distinct name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Event Location</label>
+                        <input ng-model="user.location" type="text" class="form-control input-sm" name="location" placeholder="Specify where it's held">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Event Type</label>
+                        <select class="form-control input-sm" id="sel1">
+                            <option>Select the type of event</option>
+                      
+                            <option>Festival</option>
+                            <option>Concert or performance</option>
+                            <option>Conference</option>
+                            <option>Dinner</option>
+                            <option>Game or competition</option>
+                            <option>Meeting</option>
+                            <option>Other</option>
+                            <option>Party or social gathering</option>
+                         
+                            <option>Seminar</option>
+                        
+                            <option>Training or workshop</option>
+                            <option>Trip</option>
+                            <option>Wedding</option>
+                        </select>
+                    </div>
+                    
+                        
+                        
+                            <div class="form-group">
+                            <label for="sel1">Starts at</label>
+
+                                <div class='input-group date' id='datetimepicker6'>
+                                
+                                    <input type='text' class="form-control input-sm" />
+                                    <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                           
+                        
+                        
+                            <div class="form-group">
+                    <label for="sel1">Ends at</label>
+                                <div class='input-group date' id='datetimepicker7'>
+                                    <input type='text' class="form-control input-sm" />
+                                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        
+                        
+
+                        <div class="form-group">
+                            <label for="Description">Event Description</label>
+                            <textarea class="form-control" rows="4" placeholder="Write Event Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="organizer">Organizer Name</label>
+                            <input ng-model="user.organizer" type="text" class="form-control input-sm" name="organizer" placeholder="Who's organizing this event?">
+                        </div>
+                        <div class="form-group">
+                            <label for="Guest">Guests</label>
+                            <textarea class="form-control" rows="3" placeholder="Who are the guests for this event?"></textarea>
+                            <h4 style="color:red" class="text-center">Nice Job!!&nbsp;You are done.</h4>
+                        </div>
+                </form>
+                <div class="modal-footer">
+                    <div class="col-md-16">
+                        <div class="form-group">
+                            <input type="submit" ng-click="SignIn($event)" id="submit-button" class="btn btn-block btn-lg btn-success" ng-disabled="!user.email || !user.password" value="MAKE EVENT LIVE">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+</body>
+
+</html>
