@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InstaEvents Login</title>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <!--<script type="text/javascript" src="login_validation.js"></script>-->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+</head>
+<!--<body  ng-controller="LoginCtrl" style="background-image:url(http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-4.jpg)">-->
+
+<!--<body ng-controller="LoginCtrl" style="background-image:url(../images/bkgrnd.jpg)">-->
+<body  ng-controller="LoginCtrl" style="background-image:url(http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-4.jpg)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color:red" class="text-center">InstaEvents Login</h1>
+                <h4 class="text-center">Don't have an account? <a href="#/signup">Sign up</a></h4>
+            </div>
+            <div class="modal-body">
+                <form id="loginform" class="col-md-14 center-block" name="loginform">
+                    <div class="form-group" ng-class="{ 'has-error' : loginform.username.$invalid }">
+                        <label class="sr-only" for="email">Email address:</label>
+                        <input ng-model="user.email" type="email" class="form-control input-lg" name="username" placeholder="Enter your email" autocomplete="on" autofocus>
+                        <p class="help-block" ng-show="loginform.username.$invalid">Enter a valid email.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : loginform.password.$invalid }">
+                        <input ng-model="user.password" type="password" class="form-control input-lg" name="password" placeholder="Password" ng-minlength="8">
+                        <p class="help-block" ng-show="loginform.password.$error.minlength">Min password length is 8 characters.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" ng-click="SignIn($event)" id="submit-button" class="btn btn-block btn-lg btn-success" ng-disabled="!user.email || !user.password" value="Login">
+                        <p style="color:red;" ng-show="regError">User name or password Incorrect</p>
+                    </div>
+                </form>
+                </form>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
