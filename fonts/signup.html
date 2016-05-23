@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InstaEvents Signup</title>
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <!--<script src="../bower_components/jquery/dist/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <!--<script type="text/javascript" src="validation.js"></script>-->
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles/custom.css">
+</head>
+
+<body style="background-image:url(http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-4.jpg)" ng-controller="SignupCtrl">
+    <div class="modal-dialog">
+        <div class="col-md-10">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 style="color:red" class="text-center">InstaEvents Registration</h2>
+                    <h5 class="text-center">Already have an account? <a href="#/login">Log in</a></h5>
+                </div>
+                <form id="valform" class="form-horizontal" name="regform">
+                    <div class="form-group" ng-class="{ 'has-error' : regform.name.$invalid }">
+                        <label for="inputfn3" class="col-xs-3 control-label">Name: </label>
+                        <div class="col-xs-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" name="name" id="inputfn3" placeholder="Full Name" ng-model="user.name" ng-minlength="3" autofocus>
+                                <p  class="help-block" ng-show="regform.name.$error.minlength">Name should be a min of 3 characters.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : regform.email.$invalid }">
+                        <label for="inputEmail3" class="col-xs-3 control-label">Email:</label>
+                        <div class="col-xs-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">@</span>
+                                <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email" ng-model="user.email">
+                                <p class="help-block" ng-show="regform.email.$invalid">Enter a valid email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : regform.password.$invalid }">
+                        <label for="inputPassword3" class="col-xs-3 control-label">Password:</label>
+                        <div class="col-xs-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </span>
+                                <input type="password" class="form-control"  name="password" id="inputPassword3" placeholder="Password" ng-model="user.password" ng-minlength="8">
+                             <p class="help-block" ng-show="regform.password.$error.minlength">Min password length is 8 characters.
+                                </p>
+                               
+                               <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-xs-3 control-label">Optional:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputfn4" class="col-xs-3 control-label">Employer: </label>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inputfn4" name="inputfn4" placeholder="Employer Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputfn5" class="col-xs-3 control-label">Job Title: </label>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="inputfn5" name="inputfn5" placeholder="Job Title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputfn6" class="col-xs-3 control-label">Birthday: </label>
+                        <div class="col-xs-2">
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="inputfn6" name="inputfn6">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-sm-12">
+                            <button ng-click="signUp()" ng-disabled="!user.email || !user.password|| !user.name" class="btn btn-block btn-lg btn-success" type="button" id="submit-button">SIGN UP</button>
+                            <!-- <button type="button" ng-click="signUp();" ng-disabled="!user.email || !user.password" class="btn btn-lg btn-primary btn-block">Register</button>-->
+                            <!--<input class="btn btn-block btn-lg btn-success" id="submit-button"
+            type="submit"   href="./login.html"  value="Sign Up">-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
