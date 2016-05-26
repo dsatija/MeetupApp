@@ -6,7 +6,7 @@ angular.module('myApp.login', ['ngRoute', 'firebase', 'myApp.signup'])
 // Declared route 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/login', {
-        templateUrl: '../fonts/login.html',
+        templateUrl: './fonts/login.html',
         controller: 'LoginCtrl'
     });
 }])
