@@ -7,7 +7,7 @@ angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/addEvent', {
-        templateUrl: '../fonts/addEvent.html',
+        templateUrl: './fonts/addEvent.html',
         controller: 'AddEventCtrl'
     });
 }])
