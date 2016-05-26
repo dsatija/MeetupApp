@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable */ 
 'use strict';
 
 angular.module('myApp.signup', ['ngRoute', 'firebase'])
