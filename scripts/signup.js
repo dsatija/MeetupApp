@@ -6,7 +6,7 @@ angular.module('myApp.signup', ['ngRoute', 'firebase'])
 // Declared route 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/signup', {
-        templateUrl: '../fonts/signup.html',
+        templateUrl: './fonts/signup.html',
         controller: 'SignupCtrl'
     });
 }])
