@@ -8,7 +8,7 @@ angular.module('myApp.home', [
 ]).
 config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/home', {
-            templateUrl: '../fonts/home.html',
+            templateUrl: './fonts/home.html',
             controller: 'HomeCtrl'
         });
     }])
