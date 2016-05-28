@@ -15,7 +15,11 @@ Frameworks used:AngularJS,Firebase,Bootstrap,Yeoman(with Gulp)
 
 -->Getting Started:
 
-Required Software
+Easy Way:
+Please click on below link for accessing the app online:
+http://dsatija.github.io/MeetupApp/
+
+Required Software:
 
 Git
 Node/NPM
