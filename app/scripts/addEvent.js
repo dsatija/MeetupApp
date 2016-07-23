@@ -1,7 +1,7 @@
 /* eslint-disable */
 'use strict';
 
-angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
+var module = angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
     'ui.bootstrap'
 ])
 
@@ -12,11 +12,18 @@ angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
     });
 }])
 
+
 .controller('AddEventCtrl', ['$scope', '$firebase', '$location', 'CommonProp', function($scope, $firebase, $location, CommonProp) {
+
     $scope.today = function() {
         $scope.dt = new Date();
 
     };
+
+    $scope.value = 10
+    $scope.items = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+    $scope.count = 0;
     $scope.today();
 
     $scope.clear = function() {
@@ -83,6 +90,8 @@ angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
         status: 'partially'
     }];
 
+
+
     $scope.getDayClass = function(date, mode) {
         if (mode === 'day') {
             var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
@@ -100,49 +109,45 @@ angular.module('myApp.addEvent', ['ngRoute', 'ngAnimate',
     };
 
     $scope.AddEvent = function() {
-            var title = $scope.events.title;
+        var title = $scope.events.title;
 
-            var location = $scope.events.location;
-            var locationAfterGeoCode = $scope.events.location.formatted_address;
-            var type = $scope.events.type;
-            var startdate = $scope.events.startdate;
-            var enddate = $scope.events.enddate;
-            var description = $scope.events.desc;
-            var organiser = $scope.events.organizer;
-            var guests = $scope.events.guests;
-            var geocoder = new google.maps.Geocoder();
-            var firebaseObj = new Firebase('https://boiling-torch-2659.firebaseio.com/Events');
-            var fb = $firebase(firebaseObj);
-            /*geocoder.geocode({"address": location}, function(results, status)   {
-              locationAfterGeoCode=JSON.parse(JSON.stringify(results));
-              console.log(locationAfterGeoCode);
-            });*/
+        var location = $scope.events.location;
+        var locationAfterGeoCode = $scope.events.location.formatted_address;
+        var type = $scope.events.type;
+        var startdate = $scope.events.startdate;
+        var enddate = $scope.events.enddate;
+        var description = $scope.events.desc;
+        var organiser = $scope.events.organizer;
+        var guests = $scope.events.guests;
+        var geocoder = new google.maps.Geocoder();
+        var firebaseObj = new Firebase('https://boiling-torch-2659.firebaseio.com/Events');
+        var fb = $firebase(firebaseObj);
+        /*geocoder.geocode({"address": location}, function(results, status)   {
+          locationAfterGeoCode=JSON.parse(JSON.stringify(results));
+          console.log(locationAfterGeoCode);
+        });*/
 
-            console.log(locationAfterGeoCode);
-            fb.$push({ title: title, location: locationAfterGeoCode, type: type, startdate: startdate, enddate: enddate, description: description, organiser: organiser, guests: guests, emailId: CommonProp.getUser() }).then(function(ref) {
-                console.log(ref);
-                $location.path('/welcome');
-            }, function(error) {
-                console.log('Error:', error);
-            });
+        console.log(locationAfterGeoCode);
+        fb.$push({ title: title, location: locationAfterGeoCode, type: type, startdate: startdate, enddate: enddate, description: description, organiser: organiser, guests: guests, emailId: CommonProp.getUser() }).then(function(ref) {
+            console.log(ref);
+            $location.path('/welcome');
+        }, function(error) {
+            console.log('Error:', error);
+        });
 
+    }
+
+    $scope.testfunc = function() {
+
+        if ($scope.eventform.title.$valid) {
+            $scope.dynamic = 10;
         }
-        /*$scope.initSlider=function(){
-              
-               
-               
-                $('#datetimepicker6').datetimepicker();
-                $('#datetimepicker7').datetimepicker({
-                    useCurrent: false //Important! See issue #1075
-                });
-                $("#datetimepicker6").on("dp.change", function (e) {
-                    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-                });
-                $("#datetimepicker7").on("dp.change", function (e) {
-                    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-                });
-         
+        if ($scope.eventform.sel1.$valid) {
+            $scope.dynamic = 20;
+        }
+        if ($scope.eventform.location.$valid) {
+            $scope.dynamic = 30;
+        }
 
-            //$scope.initSlider();
-          }*/
+    }
 }]);
