@@ -8,6 +8,7 @@
     <title>CreateEvent</title>
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="styles/style.css">-->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
@@ -29,71 +30,78 @@
             <div class="modal-header">
                 <h1 style="color:red" class="text-center">Create Event</h1>
             </div>
+            <uib-progressbar max="100" value="dynamic"><span style="color:white; white-space:nowrap;">{{dynamic}}</span></uib-progressbar>
+            <div class="progress-message text-center" id="progress-message">Please start filling the form :)</div>
             <div class="modal-body">
                 <form id="eventform" class="col-md-14 center-block" ng-submit="AddEvent()" name="eventform">
                     <div class="form-group" ng-class="{ 'has-error' : eventform.title.$invalid }">
-                        <label for="name">Event Title</label>
-                        <input ng-model="events.title" type="text" class="form-control input-sm" name="title" placeholder="Give it a short distinct name" ng-minlength="4" autofocus>
+                        <label for="title">Event Title</label>
+                        <input id="title" ng-model="events.title" type="text" class="form-control input-sm" name="title" placeholder="Give it a short distinct name" ng-minlength="4" autofocus ng-required="required" ng-keyup="testfunc();">
                         <p class="help-block" ng-show="eventform.title.$error.minlength">minimum 4 characters.</p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Event Location</label>
-                        <input ng-model="events.location" g-places-autocomplete type="text" class="form-control input-sm" name="location" placeholder="Specify where it's held">
+                        <label>Event Type:
+                            <input list="sel1" name="sel1" class="form-control input-sm" ng-model="events.type" ng-required="required" ng-keyup="testfunc();" />
+                        </label>
+                        <datalist id="sel1">
+                            <option value="Festival">
+                                <option value="Concert or performance">
+                                    <option value="Conference">
+                                        <option value="Dinner">
+                                            <option value="Game or competition">
+                                                <option value="Meeting">
+                                                    <option value="Other">
+                                                        <option value="Party or social gathering">
+                                                            <option value="Seminar">
+                                                                <option value="Training or workshop">
+                                                                    <option value="Trip">
+                                                                        <option value="Wedding">
+                        </datalist>
                     </div>
                     <div class="form-group">
-                        <label for="sel1">Event Type</label>
-                        <select class="form-control input-sm" id="sel1" ng-model="events.type">
-                            <option>Select the type of event</option>
-                            <option>Festival</option>
-                            <option>Concert or performance</option>
-                            <option>Conference</option>
-                            <option>Dinner</option>
-                            <option>Game or competition</option>
-                            <option>Meeting</option>
-                            <option>Other</option>
-                            <option>Party or social gathering</option>
-                            <option>Seminar</option>
-                            <option>Training or workshop</option>
-                            <option>Trip</option>
-                            <option>Wedding</option>
-                        </select>
+                        <label for="location">Event Location</label>
+                        <input id="location" ng-model="events.location" g-places-autocomplete type="text" class="form-control input-sm" name="location" placeholder="Specify where it's held" ng-required="required" ng-keyup="testfunc();">
                     </div>
                     <div class="form-group">
-                        <label for="sel1">Starts at</label>
+                        <label for="time">Starts at</label>
                         <div class='input-group date' id='datetimepicker6'>
-                            <input type="text" id="dt1" class="form-control input-sm" 
-                            datetimepicker datetimepicker-options="{{dateOptions}}" ng-model="events.startdate" placeholder="..." name="time" ng-blur="open2();" />
+                            <input type="text" id="time" class="form-control input-sm" datetimepicker datetimepicker-options="{{dateOptions}}" ng-model="events.startdate" placeholder="..." name="time" ng-required="required" ng-blur="open2()" ng-keyup="$scope.count=$scope.count+1" />
                             <!--ng-click="initSlider();" />-->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sel1">Ends at</label>
+                        <label for="time2">Ends at</label>
                         <div class='input-group date' id='datetimepicker7'>
-                            <input type="text" id="dt2" class="form-control input-sm" datetimepicker datetimepicker-options="{{dateOptions2}}" ng-model="events.enddate" placeholder="..." name="time2"  />
+                            <input type="text" id="time2" class="form-control input-sm" datetimepicker datetimepicker-options="{{dateOptions2}}" ng-model="events.enddate" placeholder="..." name="time2" ng-required="required" ng-keyup="$scope.count=$scope.count+1" />
                             <!--ng-click="initSlider();"/>-->
                         </div>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error' : eventform.desc.$invalid }">
-                        <label for="Description">Event Description</label>
-                        <textarea class="form-control" rows="4" placeholder="Write Event Description" ng-model="events.desc" ng-minlength="3" name="desc"></textarea>
+                        <label for="desc">Event Description</label>
+                        <textarea id="desc" class="form-control" rows="4" placeholder="Write Event Description" ng-model="events.desc" ng-minlength="3" name="desc" ng-required=required ng-keyup="$scope.count=$scope.count+30"></textarea>
                         <p class="help-block" ng-show="eventform.desc.$error.minlength"> minimum 3 characters.</p>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error' : eventform.organizer.$invalid }">
                         <label for="organizer">Organizer Name</label>
-                        <input ng-model="events.organizer" type="text" class="form-control input-sm" name="organizer" placeholder="Who's organizing this event?" ng-minlength="3">
-                        <p class="help-block" ng-show="eventform.organizer.$error.minlength">minimum  3 characters.</p>
+                        <input ng-model="events.organizer" id="organizer" type="text" class="form-control input-sm" name="organizer" placeholder="Who's organizing this event?" ng-minlength="3" ng-required="required" ng-keyup="$scope.count=$scope.count+50">
+                        <p class="help-block" ng-show="eventform.organizer.$error.minlength">minimum 3 characters.</p>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error' : eventform.guests.$invalid }">
-                        <label for="Guest">Guests</label>
-                        <textarea class="form-control" rows="3" placeholder="Who are the guests for this event?" ng-model="events.guests" name="guests" ng-minlength="3"></textarea>
-                         <p class="help-block" ng-show="eventform.guests.$error.minlength">minimum 3 characters.</p>
-                        <h4 style="color:green" class="text-center">Great Job!!&nbsp;You are done.</h4>
+                        <label for="guests">Guests</label>
+                        <textarea id="guests" class="form-control" rows="3" placeholder="Who are the guests for this event?" ng-model="events.guests" name="guests" ng-minlength="3" ng-keyup="search()" ng-required=requried ng-keyup="$scope.count=$scope.count+70"></textarea>
+                        <p class="help-block" ng-show="eventform.guests.$error.minlength">minimum 3 characters.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : eventform.guestmsg.$invalid }">
+                        <label for="guestmsg">Message for Guests(Optional)</label>
+                        <textarea id="guestmsg" class="form-control" rows="3" placeholder="Message for the guests" ng-model="events.guestmsg" name="guestmsg" ng-maxlength="100">
+                        </textarea ng-keyup="$scope.count=$scope.count+90">
+                        <p class="help-block" ng-show="eventform.guestmsg.$error.maxlength">maximum 100 characters.</p>
                     </div>
                 </form>
                 <div class="modal-footer">
                     <div class="col-md-16">
                         <div class="form-group">
-                            <input type="submit" ng-click="AddEvent();" id="submit-button" class="btn btn-block btn-lg btn-success" ng-disabled="!events.title || !events.location||!events.type || !events.startdate || !events.enddate || !events.desc || !events.organizer || !events.guests" value="MAKE EVENT LIVE">
+                            <input type="submit" ng-click="AddEvent();" id="submit-button" class="btn btn-block btn-lg btn-success" ng-disabled="!events.title || !events.location||!events.type || !events.type || !events.startdate || !events.enddate || !events.desc || !events.organizer || !events.guests" value="MAKE EVENT LIVE">
                         </div>
                     </div>
                 </div>
