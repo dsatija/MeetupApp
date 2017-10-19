@@ -1,5 +1,4 @@
 # MeetUp-App
-Project 1 for Senior Web Developer Course at Udacity.
 
 About:
 
